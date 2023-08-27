@@ -146,7 +146,7 @@ services:
       SYNCCTL_AUTH_KEY: "${SYNCCTL_PASSWORD:-4ba41958f341469993fd8ea1c0c932f0}"
       GOOGLE_SCHEDULER_KEY: ${GOOGLE_SCHEDULER_KEY}
       GOOGLE_SCHEDULER_LOCATION: ${GOOGLE_SCHEDULER_LOCATION:-us-central1}
-      NEXTAUTH_URL: ${AUTH_URL}
+      NEXTAUTH_URL: "https://3216-wayneshn-oceanbasepipel-0iqhu4lnq2q.ws-eu104.gitpod.io"
       UPDATE_DB: "true"
     depends_on:
       redis:
