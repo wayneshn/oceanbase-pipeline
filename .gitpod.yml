@@ -1,0 +1,17 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - init: echo 'Setting up Metabase...'
+    command: docker run -d -p 4000:4000 --name metabase metabase/metabase
+
+
+ports:
+    - name: Jitsu Server
+      description: The Jitsu web server
+      port: 3216
+      visibility: public
+    
+    - name: Metabase Server
+      port: 4000
+      visibility: private
