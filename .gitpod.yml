@@ -2,8 +2,10 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - init: echo 'Setting up Metabase and Jitsu...'
-    command: docker run -d -p 4000:4000 --name metabase metabase/metabase && docker-compose -f jitsu-docker-compose.yml up
+  - init: echo 'Setting up Metabase...'
+    command: docker run -d -p 4000:4000 --name metabase metabase/metabase
+  - init: echo 'Setting up Jitsu...'
+    command: docker-compose -f jitsu-docker-compose.yml up
 
 
 ports:
