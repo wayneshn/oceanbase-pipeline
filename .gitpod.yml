@@ -6,6 +6,13 @@ tasks:
     command: docker run -d -p 4000:3000 --name metabase metabase/metabase
   - init: echo 'Setting up Jitsu...'
     command: docker compose -f jitsu-docker-compose.yml up
+  - name: OceanBase
+    init: docker pull oceanbase/oceanbase-ce
+    command: |
+      echo "alias sh='/bin/bash'" >> ~/.profile
+      source ~/.profile
+      docker run -p 2881:2881 --name obstandalone -e MINI_MODE=1 -d oceanbase/oceanbase-ce
+      bash oceanbase-gitpod-init.sh
 
 
 ports:
@@ -16,4 +23,8 @@ ports:
     
     - name: Metabase Server
       port: 4000
+      visibility: private
+    
+    - name: OceanBase Database
+      port: 2881
       visibility: private
