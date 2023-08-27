@@ -3,9 +3,9 @@ image:
 
 tasks:
   - init: echo 'Setting up Metabase...'
-    command: docker run -d -p 4000:4000 --name metabase metabase/metabase
+    command: docker run -d -p 4000:3000 --name metabase metabase/metabase
   - init: echo 'Setting up Jitsu...'
-    command: docker-compose -f jitsu-docker-compose.yml up
+    command: docker compose -f jitsu-docker-compose.yml up
 
 
 ports:
