@@ -4,9 +4,9 @@ image:
 tasks:
   - init: |
       bash workspace-url.sh
-      docker network create metabase_network
+      docker network create pipeline_network
   - init: echo 'Setting up Metabase...'
-    command: docker run -d -p 4000:3000 --name metabase --network=metabase_network metabase/metabase
+    command: docker run -d -p 4000:3000 --name metabase --network=pipeline_network metabase/metabase
   - init: echo 'Setting up Jitsu...'
     command: docker compose -f jitsu-docker-compose.yml up
   - name: OceanBase
@@ -14,7 +14,7 @@ tasks:
     command: |
       echo "alias sh='/bin/bash'" >> ~/.profile
       source ~/.profile
-      docker run --network=metabase_network -p 2881:2881 --name obstandalone -e MINI_MODE=1 -d oceanbase/oceanbase-ce
+      docker run --network=pipeline_network -p 2881:2881 --name obstandalone -e MINI_MODE=1 -d oceanbase/oceanbase-ce
       bash oceanbase-gitpod-init.sh
 
 
