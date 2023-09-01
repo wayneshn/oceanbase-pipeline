@@ -1,8 +1,12 @@
 <script lang="ts">
 	import { count } from '$stores/counterStore';
+	import { track } from '$src/actions/jitsu';
+	import authStore from '$src/stores/authStore';
 
 	function decrement() {
 		count.update((n) => n - 1);
+		track($authStore.user?.email, 'MinusCounter')
+
 	}
 </script>
 

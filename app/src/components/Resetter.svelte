@@ -1,8 +1,12 @@
 <script lang="ts">
 	import { count } from '$stores/counterStore';
+	import { track } from '$src/actions/jitsu';
+	import authStore from '$src/stores/authStore';
 
 	function reset() {
 		count.set(0);
+		track($authStore.user?.email, 'ReSetCounter')
+
 	}
 </script>
 

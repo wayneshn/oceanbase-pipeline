@@ -1,6 +1,9 @@
 <script lang="ts">
 	import TodoList from './TodoList.svelte';
 	import type { TodoType } from './TodoList.svelte';
+	import { track } from '$src/actions/jitsu';
+	import authStore from '$src/stores/authStore';
+
 
 	let lastId = 0;
 	const createTodo = (text: string, done = false): TodoType => ({ id: ++lastId, text, done });
@@ -14,11 +17,18 @@
 	function addTodo() {
 		todos = todos.concat(createTodo(todoText));
 		todoText = '';
+		track($authStore.user?.email, 'AddTodo')
 	}
 
-	const archiveCompleted = () => (todos = todos.filter((t) => !t.done));
+	const archiveCompleted = () => {
+		todos = todos.filter((t) => !t.done)
+		track($authStore.user?.email, 'CompleteTodo')
+	};
 
-	const deleteTodo = (todoId: number) => (todos = todos.filter((t) => t.id !== todoId));
+	const deleteTodo = (todoId: number) => {
+		todos = todos.filter((t) => t.id !== todoId)
+		track($authStore.user?.email, 'DeleteTodo')
+	};
 
 	function toggleDone(id: number) {
 		todos = todos.map((t) => (t.id === id ? { ...t, done: !t.done } : t));

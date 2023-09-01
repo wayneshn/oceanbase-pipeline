@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { count } from '$stores/counterStore';
-
+	import authStore from '$src/stores/authStore';
+	import { track } from '$src/actions/jitsu';
 	function increment() {
 		count.update((n) => n + 1);
+		track($authStore.user?.email, "AddCounter")
 	}
 </script>
 
