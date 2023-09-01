@@ -72,7 +72,7 @@
 										alt={$authStore.user?.displayName}
 									/>
 								{:else}
-									<img src="https://placeimg.com/80/80/people" alt="profile" />
+									<img src="https://picsum.photos/200" alt="profile" />
 								{/if}
 							</div>
 						</label>

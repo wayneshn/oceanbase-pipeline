@@ -4,6 +4,7 @@ import { getApps, getApp, initializeApp } from '@firebase/app';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from '@firebase/auth';
 import type { FirebaseOptions } from '@firebase/app';
 import type { Auth, UserCredential } from '@firebase/auth';
+import { track } from './actions/jitsu';
 
 const config: FirebaseOptions = {
 	apiKey: env.PUBLIC_FIREBASE_API_KEY as string,
@@ -25,7 +26,11 @@ export const googleProvider = new GoogleAuthProvider();
 
 export const signIn = (): Promise<UserCredential | void> => {
 	if (browser) {
-		return signInWithPopup(getAppAuth(), googleProvider);
+		const auth = signInWithPopup(getAppAuth(), googleProvider);
+		auth.then(data=> {
+			track(data.user.email, "SignIn")
+		})
+		return auth
 	} else {
 		return new Promise((r) => r());
 	}

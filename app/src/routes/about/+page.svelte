@@ -3,7 +3,7 @@
 </script>
 
 <SEO title={'About'} description={'About Page'} />
-<div class="hero h-full" style="background-image: url(https://placeimg.com/1000/800/arch);">
+<div class="hero h-full" style="background-image: url(https://picsum.photos/800/800);">
 	<div class="hero-overlay bg-opacity-60" />
 	<div class="hero-content text-center text-neutral-content">
 		<div class="max-w-md">
