@@ -3,12 +3,13 @@ image:
 
 tasks:
   - init: |
-      bash workspace-url.sh
       docker network create pipeline_network
   - init: echo 'Setting up Metabase...'
     command: docker run -d -p 4000:3000 --name metabase --network=pipeline_network metabase/metabase
-  - init: echo 'Setting up Jitsu...'
-    command: docker compose -f jitsu-docker-compose.yml up
+  - init: |
+    echo 'Setting up Jitsu...'
+    bash workspace-url.sh
+    docker compose -f jitsu-docker-compose.yml up
   # - name: OceanBase
   #   init: docker pull oceanbase/oceanbase-ce
   #   command: |
