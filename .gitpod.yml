@@ -9,7 +9,8 @@ tasks:
   - init: |
     echo 'Setting up Jitsu...'
     bash workspace-url.sh
-    command: docker compose -f jitsu-docker-compose.yml up
+    command: 
+      docker compose -f jitsu-docker-compose.yml up
   # - name: OceanBase
   #   init: docker pull oceanbase/oceanbase-ce
   #   command: |
