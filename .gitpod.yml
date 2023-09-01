@@ -2,12 +2,10 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - init: |
-      bash jitsu-setup.sh
-      docker network create pipeline_network
+  - init: docker network create pipeline_network
   - init: echo 'Setting up Metabase...'
     command: docker run -d -p 4000:3000 --name metabase --network=pipeline_network metabase/metabase
-  - init: echo 'Setting up Jitsu...'
+  - init: bash jitsu-setup.sh
     command: docker compose -f jitsu-docker-compose.yml up
   # - name: OceanBase
   #   init: docker pull oceanbase/oceanbase-ce
